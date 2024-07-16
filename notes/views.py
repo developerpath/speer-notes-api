@@ -60,9 +60,12 @@ class SearchNotesView(APIView):
 
     def get(self, request):
         query = request.GET.get('q', '')
-        notes = Note.objects.filter(
-            Q(owner=request.user) | Q(shared_with=request.user),
-            Q(title__icontains=query) | Q(body__icontains=query)
-        )
-        serializer = NoteSerializer(notes, many=True)
-        return Response(serializer.data)
+        if query:
+            notes = Note.objects.filter(
+                Q(owner=request.user) | Q(shared_with=request.user),
+                Q(title__icontains=query) | Q(body__icontains=query)
+            )
+            serializer = NoteSerializer(notes, many=True)
+            return Response(serializer.data)
+        else:
+            return Response([])
