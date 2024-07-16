@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from notes.views import SearchNotesView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('authentication.urls')),
+    path('api/search/', SearchNotesView.as_view(), name='search_notes'),
     path('api/notes/', include('notes.urls')),
 ]
