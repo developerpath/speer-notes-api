@@ -11,22 +11,24 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import timedelta
+from decouple import Config, RepositoryEnv, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+ENV = Config(RepositoryEnv(BASE_DIR / '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pt7ng^d^d5k94v-o(f425v^9#=!%)9)d3$2m3g)nbmp5r+j$qe'
+SECRET_KEY = ENV('SECRET_KEY', cast=str)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = ENV('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ENV('ALLOWED_HOSTS', cast=Csv())
 
 
 # Application definition
@@ -102,6 +104,17 @@ DATABASES = {
     }
 }
 
+if ENV('ENV', cast=str) == 'PROD':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': ENV('DB_NAME'),
+            'USER': ENV('DB_USER'),
+            'PASSWORD': ENV('DB_PASS'),
+            'HOST': '127.0.0.1'
+        }
+    }
+
 AUTH_USER_MODEL = 'authentication.User'
 # ENABLE_AUTHENTICATION = False
 
@@ -140,7 +153,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
