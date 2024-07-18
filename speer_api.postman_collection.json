@@ -19,7 +19,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "username",
+									"value": "user1",
 									"type": "text"
 								},
 								{
@@ -29,7 +29,7 @@
 								},
 								{
 									"key": "password",
-									"value": "password",
+									"value": "1Password#",
 									"type": "text"
 								}
 							]
@@ -58,12 +58,12 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "user",
+									"value": "user1",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "password",
+									"value": "1Password#",
 									"type": "text"
 								}
 							]
@@ -363,6 +363,11 @@
 		{
 			"key": "api_base",
 			"value": "http://127.0.0.1:8000/api",
+			"type": "string"
+		},
+		{
+			"key": "api_base_prod",
+			"value": "http://api-speer.webilex.net/api",
 			"type": "string"
 		},
 		{
