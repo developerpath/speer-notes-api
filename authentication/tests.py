@@ -7,17 +7,17 @@ User = get_user_model()
 
 class NotesAPITest(APITestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username='testuser', password='password')
+        self.user = User.objects.create_user(username='testuser', password='Password1@')
         self.client = APIClient()
 
     def test_signup(self):
         url = reverse('signup')
-        data = {'username': 'newuser', 'password': 'newpassword'}
+        data = {'username': 'newuser', 'password': 'Password1@'}
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_login(self):
         url = reverse('login')
-        data = {'username': 'testuser', 'password': 'password'}
+        data = {'username': 'testuser', 'password': 'Password1@'}
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
