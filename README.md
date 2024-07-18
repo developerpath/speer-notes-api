@@ -93,14 +93,14 @@ python manage.py test
 
 #### Authentication Endpoints
 
-`POST /api/auth/signup`: Create a new user account.
-`POST /api/auth/login`: Authenticate a user and return a JWT token.
+- `POST /api/auth/signup`: Create a new user account.
+- `POST /api/auth/login`: Authenticate a user and return a JWT token.
 
 #### Note Endpoints
-`GET /api/notes`: Get a list of all notes for the authenticated user.
-`GET /api/notes/<id>`: Get a note by ID for the authenticated user.
-`POST /api/notes`: Create a new note for the authenticated user.
-`PUT /api/notes/<id>`: Update an existing note by ID for the authenticated user.
-`DELETE /api/notes/<id>`: Delete a note by ID for the authenticated user.
-`POST /api/notes/<id>/share`: Share a note with another user for the authenticated user.
-`GET /api/search?q=<query>`: Search for notes based on keywords. This endpoint is publicly accessible.
+- `GET /api/notes`: Get a list of all notes for the authenticated user.
+- `GET /api/notes/<id>`: Get a note by ID for the authenticated user.
+- `POST /api/notes`: Create a new note for the authenticated user.
+- `PUT /api/notes/<id>`: Update an existing note by ID for the authenticated user.
+- `DELETE /api/notes/<id>`: Delete a note by ID for the authenticated user.
+- `POST /api/notes/<id>/share`: Share a note with another user for the authenticated user.
+- `GET /api/search?q=<query>`: Search for notes based on keywords. This endpoint is publicly accessible.
