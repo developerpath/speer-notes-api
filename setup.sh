@@ -2,7 +2,7 @@
 
 env=$1;
 
-rm venv -rf && \
+rm -rf venv && \
 mkdir venv && \
 python -m venv ./venv && \
 source ./venv/bin/activate && \
